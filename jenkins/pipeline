@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    tools {
+        gradle 'gradle'
+    }
+    stages {
+        stage ('Gradle build') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/WhoHereAliaksandr/CICD']])
+                sh 'gradle build'
+            }
+        }
+        stage ('Log loh') {
+            steps {
+                sh 'echo loh1'
+            }
+        }
+    }
+}
